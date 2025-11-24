@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ana Səhifə — Learnihub</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <h1 class="logo"><a href="index.html">Learnihub</a></h1>
+
+      <nav class="main-nav">
+        <a href="index.html" class="nav-link">Ana səhifə</a>
+        <a href="#" id="coursesBtn" class="nav-link">Kurslar</a>
+        <a href="#" id="surveyBtn" class="nav-link">Sorğu</a>
+        <a href="#contact" class="nav-link">Əlaqə</a>
+
+        <!-- LOGIN / LOGOUT BUTTON -->
+        <a href="login.html" id="authBtn" class="nav-link">Daxil ol</a>
+
+        <!-- USER MENU -->
+        <div id="userMenu" class="user-menu" style="display:none">
+          <button class="icon-btn">👤</button>
+          <div class="dropdown-menu">
+            <a href="#">Profil</a>
+            <a href="#" id="userSurveyBtn">Sorğu göndər</a>
+            <a href="#" id="logoutBtn">Çıxış</a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="container">
+    <section class="hero">
+      <h2>Öz biliklərini paylaş — yeni kurslar əlavə et</h2>
+      <p>Kurslar, proqramlar və təhsil resurslarını paylaşmaq üçün platformamızdan istifadə et.</p>
+
+      <div class="hero-actions">
+        <a class="btn" href="#" id="coursesBtn2">Kurslara bax</a>
+      </div>
+    </section>
+
+    <section class="services">
+      <h2>Xidmətlərimiz</h2>
+      <div class="service-boxes">
+        <div class="service-card">
+          <h3>Sorğularınızı yerləşdirin</h3>
+          <p>Kurslar haqqında məlumat əlavə edin və paylaşın.</p>
+        </div>
+
+        <div class="service-card">
+          <h3>Proqramlar haqqında məlumat</h3>
+          <p>Tədris sahəsində kurslar barədə ətraflı məlumat tapın.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+      <h2>Əlaqə</h2>
+      <div class="contact-container">
+        <div class="contact-info">
+          <h3>Əlaqə məlumatları</h3>
+          <p><strong>Instagram:</strong> <a href="#">@learnihub</a></p>
+          <p><strong>Email:</strong> info@learnihub.az</p>
+          <p><strong>Ünvan:</strong> Bakı, Azərbaycan</p>
+        </div>
+
+        <form class="contact-form">
+          <label>Ad</label>
+          <input type="text" required>
+
+          <label>Email</label>
+          <input type="email" required>
+
+          <label>Mesaj</label>
+          <textarea required></textarea>
+
+          <button type="submit">Göndər</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2025 Learnihub — Bütün hüquqlar qorunur</p>
+    </div>
+  </footer>
+
+<script type="module" src="main.js"></script>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyClVr_eU0BKvPT_gx4prOv1Q3JEe_iU1ZU",
+    authDomain: "learnihub-5c66b.firebaseapp.com",
+    projectId: "learnihub-5c66b",
+    storageBucket: "learnihub-5c66b.firebasestorage.app",
+    messagingSenderId: "89741302138",
+    appId: "1:89741302138:web:1854b6ad4f56cff60f1ec3",
+    measurementId: "G-DPZ8K0BTZ6"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="az">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Daxil ol / Qeydiyyat — Learnihub</title>
+  <link rel="stylesheet" href="login.css">
+
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+
+<body>
+
+  <a href="index.html" class="back-button">
+    <ion-icon name="arrow-back-outline"></ion-icon> Geri Qayıt
+  </a>
+
+  <div class="container">
+
+    <div id="login-form">
+      <h1>Login</h1>
+      <form id="loginForm">
+        <input type="email" id="loginEmail" name="email" placeholder="Email" required>
+        <input type="password" id="loginPassword" name="password" placeholder="Şifrə" required>
+        <button type="submit">Daxil ol</button>
+      </form>
+      <p>Hesabınız yoxdur? <a href="#" id="show-register">Qeydiyyat</a></p>
+    </div>
+
+    <div id="register-form" style="display:none;">
+      <h1>Qeydiyyat</h1>
+      <form id="registerForm">
+        <input type="text" id="regUsername" name="username" placeholder="Username" required>
+        <input type="email" id="regEmail" name="email" placeholder="Email" required>
+        <input type="password" id="regPassword" name="password" placeholder="Şifrə" required>
+        <button type="submit">Qeydiyyatdan keç</button>
+      </form>
+      <p>Artıq hesabınız var? <a href="#" id="show-login">Login</a></p>
+    </div>
+
+  </div>
+
+  <script>
+    const loginBox = document.getElementById("login-form");
+    const registerBox = document.getElementById("register-form");
+    document.getElementById("show-register").addEventListener("click", e => {
+      e.preventDefault();
+      loginBox.style.display = "none";
+      registerBox.style.display = "block";
+    });
+    document.getElementById("show-login").addEventListener("click", e => {
+      e.preventDefault();
+      registerBox.style.display = "none";
+      loginBox.style.display = "block";
+    });
+  </script>
+
+<script>
+  const loginBox = document.getElementById("login-form");
+  const registerBox = document.getElementById("register-form");
+  document.getElementById("show-register").addEventListener("click", e => {
+    e.preventDefault();
+    loginBox.style.display = "none";
+    registerBox.style.display = "block";
+  });
+  document.getElementById("show-login").addEventListener("click", e => {
+    e.preventDefault();
+    registerBox.style.display = "none";
+    loginBox.style.display = "block";
+  });
+</script>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+  import { 
+    getAuth, 
+    createUserWithEmailAndPassword, 
+    signInWithEmailAndPassword, 
+    setPersistence, 
+    browserLocalPersistence 
+  } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+
+  // Firebase Konfiqurasiyası
+  const firebaseConfig = {
+    apiKey: "AIzaSyBAIn3a96pvltpQqvobdKKWfRqSOp2x_MA",
+    authDomain: "learnihub-d14c4.firebaseapp.com",
+    projectId: "learnihub-d14c4",
+    storageBucket: "learnihub-d14c4.firebasestorage.app",
+    messagingSenderId: "339528131716",
+    appId: "1:339528131716:web:8c8c137f108a533e254ed1",
+    measurementId: "G-HD76FE1BFY"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  
+  // DOM Elementləri
+  const loginBox = document.getElementById("login-form");
+  const registerBox = document.getElementById("register-form");
+  
+  // Toggle Funksiyası
+  document.getElementById("show-register").addEventListener("click", e => {
+    e.preventDefault();
+    loginBox.style.display = "none";
+    registerBox.style.display = "block";
+  });
+  document.getElementById("show-login").addEventListener("click", e => {
+    e.preventDefault();
+    registerBox.style.display = "none";
+    loginBox.style.display = "block";
+  });
+
+  // REGISTER
+  document.getElementById("registerForm").addEventListener("submit", e => {
+    e.preventDefault();
+    const email = document.getElementById("regEmail").value;
+    const password = document.getElementById("regPassword").value;
+
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        document.getElementById("registerForm").reset();
+        loginBox.style.display = "block";
+        registerBox.style.display = "none";
+        alert("Qeydiyyat uğurla tamamlandı! İndi daxil ola bilərsiniz.");
+      })
+      .catch(err => {
+        if(err.code==="auth/email-already-in-use") alert("Bu email artıq mövcuddur!");
+        else alert(err.message);
+      });
+  });
+
+  // LOGIN
+  document.getElementById("loginForm").addEventListener("submit", e => {
+    e.preventDefault();
+    const email = document.getElementById("loginEmail").value;
+    const password = document.getElementById("loginPassword").value;
+
+    setPersistence(auth, browserLocalPersistence)
+      .then(() => signInWithEmailAndPassword(auth, email, password))
+      .then(() => {
+        // Uğurlu Logindən sonra ana səhifəyə yönləndirmə
+        window.location.href = "index.html"; 
+      })
+      .catch(err => alert(err.message));
+  });
+</script>
+<script type="module" src="main.js"></script>
+</body>
+</html>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!Doctype html>
+<html lang="az">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kurslar</title>
+  <link rel="stylesheet" href="course.css">
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <h1 class="logo"><a href="index.html">Learnihub</a></h1>
+
+      <nav class="main-nav">
+        <a href="index.html" class="nav-link">Ana səhifə</a>
+        <a href="course.html" class="nav-link">Kurslar</a>
+        <a href="survey.html" id="surveyBtn" class="nav-link">Sorğu</a>
+
+        <!-- LOGIN BUTTON -->
+        <a href="login.html" id="authBtn" class="nav-link">Daxil ol</a>
+
+        <!-- USER MENU -->
+        <div id="userMenu" class="user-menu" style="display:none">
+          <button class="icon-btn">👤</button>
+          <div class="dropdown-menu">
+            <a href="#">Profil</a>
+            <a href="survey.html">Sorğu göndər</a>
+            <a href="#" id="logoutBtn">Çıxış</a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+
+  <main class="container">
+    <h2>Kurslar</h2>
+
+    <!-- Axtarış və kateqoriya -->
+    <div class="filter-bar">
+      <input type="text" id="searchInput" placeholder="Kurs adı ilə axtar...">
+      <select id="categorySelect">
+        <option value="hamisi">Bütün kateqoriyalar</option>
+        <option value="programlasdirma">Proqramlaşdırma</option>
+        <option value="data">Data & Analitika</option>
+        <option value="stem">STEM</option>
+        <option value="summer">Summer School</option>
+      </select>
+    </div>
+
+    <div class="courses-grid" id="coursesGrid">
+
+      <article class="course-card" data-category="programlasdirma">
+        <h3>Frontend Proqramlaşdırma</h3>
+        <p>HTML, CSS, JavaScript — layihə əsaslı tədris.</p>
+        <a class="btn small courseBtn" href="#">Qeydiyyat</a>
+      </article>
+
+      <article class="course-card" data-category="data">
+        <h3>Python və Data</h3>
+        <p>Python ilə data analizi və modelləşdirmə.</p>
+        <a class="btn small courseBtn" href="#">Qeydiyyat</a>
+      </article>
+
+      <article class="course-card" data-category="programlasdirma">
+        <h3>SQL və Verilənlər Bazası</h3>
+        <p>PostgreSQL və məlumat bazası strukturları.</p>
+        <a class="btn small courseBtn" href="#">Qeydiyyat</a>
+      </article>
+
+      <article class="course-card" data-category="stem">
+        <h3>STEM Layihələri</h3>
+        <p>Elm və mühəndislik təcrübələri.</p>
+        <a class="btn small courseBtn" href="#">Qeydiyyat</a>
+      </article>
+
+      <article class="course-card" data-category="summer">
+        <h3>Summer School 2025</h3>
+        <p>Yay məktəbi — beynəlxalq seminarlar.</p>
+        <a class="btn small courseBtn" href="#">Qeydiyyat</a>
+      </article>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2025 TəhsilPortal</p>
+    </div>
+  </footer>
+  <script type="module" src="main.js"></script>
+
+  <!-- AXTARIŞ + FİLTR -->
+  <script>
+    const searchInput = document.getElementById("searchInput");
+    const categorySelect = document.getElementById("categorySelect");
+    const courses = document.querySelectorAll(".course-card");
+
+    function filterCourses() {
+      const text = searchInput.value.toLowerCase();
+      const cat = categorySelect.value;
+
+      courses.forEach(card => {
+        const title = card.querySelector("h3").textContent.toLowerCase();
+        const category = card.dataset.category;
+
+        const okText = title.includes(text);
+        const okCat = (cat === "hamisi" || category === cat);
+
+        card.style.display = (okText && okCat) ? "block" : "none";
+      });
+    }
+
+    searchInput.addEventListener("input", filterCourses);
+    categorySelect.addEventListener("change", filterCourses);
+  </script>
+<script type="module" src="main.js"></script>
+</body>
+</html>

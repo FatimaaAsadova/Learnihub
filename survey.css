@@ -1,0 +1,162 @@
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    background-color: #f4f8fb;
+    color: #333;
+  }
+  
+  /* HEADER */
+.site-header {
+  background-color: #40697E;
+  color: white;
+  padding: 10px 0; /* Kompakt header */
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin: auto;
+  flex-wrap: wrap;
+}
+
+.logo a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.3rem; /* Header üçün kiçildildi */
+  font-weight: 700;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.main-nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 0.95rem;
+  padding: 4px 8px;
+  transition: 0.3s;
+}
+
+.main-nav a:hover, .main-nav a.active {
+  color: #ffebcd;
+}
+  /* Icon düyməsi (mobil üçün) */
+  .icon-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.4rem;
+    cursor: pointer;
+  }
+  
+  .account-dropdown {
+    position: absolute;
+    right: 40px;
+    top: 60px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    display: none;
+    flex-direction: column;
+  }
+  
+  .account-dropdown a {
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .account-dropdown a:hover {
+    background: #f0f0f0;
+  }
+  
+  /* Main form hissəsi */
+  .survey-page {
+    width: 100%;
+    max-width: 600px;
+    margin: 50px auto;
+    background: white;
+    padding: 40px 50px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+  }
+  
+  .survey-page h2 {
+    text-align: center;
+    color: #40697E;
+    margin-bottom: 10px;
+  }
+  
+  .survey-page p {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #555;
+  }
+  
+  /* Form üslubu */
+  .sorgu-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .sorgu-form label {
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .sorgu-form input,
+  .sorgu-form select,
+  .sorgu-form textarea {
+    margin-bottom: 20px;
+    padding: 10px 12px;
+    border: 1.5px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    outline: none;
+    transition: 0.3s;
+    font-family: inherit;
+  }
+  
+  .sorgu-form input:focus,
+  .sorgu-form select:focus,
+  .sorgu-form textarea:focus {
+    border-color: #40697E;
+    box-shadow: 0 0 5px rgba(64, 105, 126, 0.3);
+  }
+  
+  /* Göndər düyməsi */
+  .btn {
+    background-color: #40697E;
+    color: white;
+    font-size: 1rem;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .btn:hover {
+    background-color: #325163;
+  }
+  
+  /* Footer */
+  .site-footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #40697E;
+    color: white;
+    margin-top: 60px;
+  }
+  

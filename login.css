@@ -1,0 +1,114 @@
+/* Ümumi background — blur + gradient */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #40697E55, #6da3b855);
+    backdrop-filter: blur(6px);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Geri qayıt */
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 20px;
+    transition: 0.3s;
+}
+
+.back-button ion-icon {
+    font-size: 22px;
+}
+
+.back-button:hover {
+    color: #dbe8f0;
+}
+
+/* Form konteyner — glass effect */
+.container {
+    width: 380px;
+    margin: auto;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.1);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.25);
+}
+
+/* Başlıq */
+.container h1 {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 25px;
+    font-size: 28px;
+}
+
+/* Input qutuları */
+.input-box {
+    position: relative;
+    width: 100%;
+    margin: 15px 0;
+}
+
+.input-box input {
+    width: 100%;          /* tam eni tutur */
+    padding: 14px 30px;
+    font-size: 16px;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 8px;
+    outline: none;
+    background: rgba(255,255,255,0.1); /* şəffaf effekt */
+    backdrop-filter: blur(6px);
+    transition: 0.3s;
+    text-align: center;   /* mətni ortalayır */
+}
+
+.input-box input::placeholder {
+    color: #f0f0f0;
+}
+
+.input-box input:focus {
+    border-color: #ffffff;
+    box-shadow: 0 0 5px rgba(255,255,255,0.4);
+}
+
+
+/* Düymə */
+button {
+    width: 80%;
+    padding: 12px;
+    background: #ffffff;
+    border: none;
+    color: #40697E;
+    font-size: 17px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #e8eef2;
+}
+
+/* Aşağıdaki mətn */
+.container p {
+    text-align: center;
+    margin-top: 15px;
+    color: #ffffff;
+}
+
+.container a {
+    color: #ffffff;
+    font-weight: 600;
+    text-decoration: underline;
+}
