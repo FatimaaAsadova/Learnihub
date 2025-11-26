@@ -1,162 +1,93 @@
+/* Modernized survey styles */
+:root{
+  --bg: #f6fbff;
+  --surface: #ffffff;
+  --muted: #6b7280;
+  --primary: #2f6d89;
+  --primary-600: #265769;
+  --accent: #63c5da;
+  --radius: 12px;
+  --shadow-1: 0 6px 18px rgba(19,38,55,0.06);
+  --shadow-2: 0 10px 30px rgba(19,38,55,0.08);
+  --max-width: 900px;
+}
+
+html, body { height: 100%; }
+
 body {
-    font-family: 'Segoe UI', Arial, sans-serif;
-    margin: 0;
-    background-color: #f4f8fb;
-    color: #333;
-  }
-  
-  /* HEADER */
-.site-header {
-  background-color: #40697E;
-  color: white;
-  padding: 10px 0; /* Kompakt header */
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  background: radial-gradient(1000px 300px at 10% 10%, rgba(99,179,255,0.04), transparent), var(--bg);
+  color: #0f1724;
+  -webkit-font-smoothing:antialiased;
 }
 
-.header-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 90%;
-  margin: auto;
-  flex-wrap: wrap;
+/* Header (glassy) */
+.site-header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  backdrop-filter: blur(6px);
+  background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.45));
+  border-bottom: 1px solid rgba(15,23,36,0.06);
+  box-shadow: var(--shadow-1);
 }
 
-.logo a {
-  color: white;
-  text-decoration: none;
-  font-size: 1.3rem; /* Header üçün kiçildildi */
-  font-weight: 700;
+.header-inner{ display:flex; align-items:center; justify-content:space-between; gap:12px; width:92%; margin:0 auto; padding:10px 0; flex-wrap:wrap; }
+.logo a{ color:var(--primary); text-decoration:none; font-weight:800; font-size:1.1rem; }
+.main-nav{ display:flex; gap:8px; align-items:center; }
+.main-nav a{ color:var(--muted); text-decoration:none; padding:8px 10px; border-radius:999px; transition:all 180ms cubic-bezier(.2,.9,.2,1); }
+.main-nav a:hover{ background: rgba(99,179,255,0.06); color:var(--primary-600); transform: translateY(-2px); }
+
+.icon-btn{ background:transparent; border:0; color:var(--muted); font-size:1.2rem; cursor:pointer; }
+.account-dropdown{ display:none; position:absolute; right:20px; top:54px; background:var(--surface); border-radius:10px; box-shadow:var(--shadow-2); padding:6px; }
+.account-dropdown a{ display:block; padding:10px 12px; color:var(--muted); text-decoration:none; border-radius:8px; }
+.account-dropdown a:hover{ background:rgba(15,23,36,0.03); color:var(--primary-600); }
+
+/* Survey card */
+.survey-page{
+  width: 92%;
+  max-width: 700px;
+  margin: 56px auto;
+  padding: 28px;
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, var(--surface), #fbfdff);
+  box-shadow: var(--shadow-1);
+  border: 1px solid rgba(15,23,36,0.03);
 }
 
-.main-nav {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
+.survey-page h2{ text-align:center; color:var(--primary); margin:6px 0 12px; font-size:1.4rem; }
+.survey-page p{ text-align:center; color:var(--muted); margin-bottom:20px; }
+
+/* Form */
+.sorgu-form{ display:grid; grid-template-columns: 1fr 1fr; gap:16px; }
+.sorgu-form .full{ grid-column: 1 / -1; }
+
+.sorgu-form label{ display:block; margin-bottom:8px; color:var(--muted); font-weight:700; }
+.sorgu-form input,
+.sorgu-form select,
+.sorgu-form textarea{
+  width:100%; padding:12px 14px; border-radius:10px; border:1px solid rgba(15,23,36,0.06); background:linear-gradient(180deg,#fff,#fbfdff); outline:none; transition:box-shadow .15s, border-color .15s; font-family:inherit;
+}
+.sorgu-form textarea{ min-height:120px; resize:vertical; }
+.sorgu-form input::placeholder, .sorgu-form textarea::placeholder{ color:#98a6b2; }
+.sorgu-form input:focus, .sorgu-form select:focus, .sorgu-form textarea:focus{ border-color:var(--accent); box-shadow:0 8px 24px rgba(99,179,215,0.08); }
+
+/* Actions */
+.form-actions{ display:flex; gap:12px; align-items:center; justify-content:flex-end; grid-column:1 / -1; }
+.btn{ padding:10px 14px; border-radius:10px; border:0; cursor:pointer; font-weight:700; }
+.btn.primary{ background: linear-gradient(90deg,var(--primary),var(--primary-600)); color:#fff; box-shadow:0 8px 26px rgba(47,109,137,0.12); }
+.btn.ghost{ background:transparent; color:var(--primary); border:1px solid rgba(47,109,137,0.08); }
+.btn.primary:hover{ transform:translateY(-3px); box-shadow:0 14px 34px rgba(47,109,137,0.16); }
+
+/* Footer */
+.site-footer{ text-align:center; padding:20px; color:var(--muted); border-top:1px solid rgba(15,23,36,0.04); margin-top:40px; }
+
+/* Responsive */
+@media (max-width:720px){
+  .sorgu-form{ grid-template-columns: 1fr; }
+  .form-actions{ justify-content: center; }
+  .survey-page{ margin: 28px 16px; padding:20px; }
 }
 
-.main-nav a {
-  color: white;
-  text-decoration: none;
-  font-size: 0.95rem;
-  padding: 4px 8px;
-  transition: 0.3s;
-}
-
-.main-nav a:hover, .main-nav a.active {
-  color: #ffebcd;
-}
-  /* Icon düyməsi (mobil üçün) */
-  .icon-btn {
-    background: transparent;
-    border: none;
-    color: white;
-    font-size: 1.4rem;
-    cursor: pointer;
-  }
-  
-  .account-dropdown {
-    position: absolute;
-    right: 40px;
-    top: 60px;
-    background: white;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    display: none;
-    flex-direction: column;
-  }
-  
-  .account-dropdown a {
-    padding: 10px;
-    text-decoration: none;
-    color: #333;
-  }
-  
-  .account-dropdown a:hover {
-    background: #f0f0f0;
-  }
-  
-  /* Main form hissəsi */
-  .survey-page {
-    width: 100%;
-    max-width: 600px;
-    margin: 50px auto;
-    background: white;
-    padding: 40px 50px;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.1);
-  }
-  
-  .survey-page h2 {
-    text-align: center;
-    color: #40697E;
-    margin-bottom: 10px;
-  }
-  
-  .survey-page p {
-    text-align: center;
-    margin-bottom: 30px;
-    color: #555;
-  }
-  
-  /* Form üslubu */
-  .sorgu-form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .sorgu-form label {
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: #333;
-  }
-  
-  .sorgu-form input,
-  .sorgu-form select,
-  .sorgu-form textarea {
-    margin-bottom: 20px;
-    padding: 10px 12px;
-    border: 1.5px solid #ccc;
-    border-radius: 6px;
-    font-size: 1rem;
-    outline: none;
-    transition: 0.3s;
-    font-family: inherit;
-  }
-  
-  .sorgu-form input:focus,
-  .sorgu-form select:focus,
-  .sorgu-form textarea:focus {
-    border-color: #40697E;
-    box-shadow: 0 0 5px rgba(64, 105, 126, 0.3);
-  }
-  
-  /* Göndər düyməsi */
-  .btn {
-    background-color: #40697E;
-    color: white;
-    font-size: 1rem;
-    padding: 12px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-  
-  .btn:hover {
-    background-color: #325163;
-  }
-  
-  /* Footer */
-  .site-footer {
-    text-align: center;
-    padding: 20px;
-    background-color: #40697E;
-    color: white;
-    margin-top: 60px;
-  }
-  
+@media (prefers-reduced-motion: reduce){ *{ transition:none !important; } }
