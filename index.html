@@ -15,8 +15,8 @@
 
       <nav class="main-nav">
         <a href="index.html" class="nav-link">Ana səhifə</a>
-        <a href="#" id="coursesBtn" class="nav-link">Kurslar</a>
-        <a href="#" id="surveyBtn" class="nav-link">Sorğu</a>
+        <a href="course.html" id="coursesBtn" class="nav-link">Kurslar</a>
+        <a href="survey.html" id="surveyBtn" class="nav-link">Sorğu</a>
         <a href="#contact" class="nav-link">Əlaqə</a>
 
         <!-- LOGIN / LOGOUT BUTTON -->
@@ -42,7 +42,7 @@
       <p>Kurslar, proqramlar və təhsil resurslarını paylaşmaq üçün platformamızdan istifadə et.</p>
 
       <div class="hero-actions">
-        <a class="btn" href="#" id="coursesBtn2">Kurslara bax</a>
+        <a class="btn" href="course.html" id="coursesBtn2">Kurslara bax</a>
       </div>
     </section>
 
@@ -117,6 +117,18 @@
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
 </script>
+<script type="module">
+  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
 
+  const auth = getAuth();
+
+  onAuthStateChanged(auth, (user) => {
+    if (!user) {
+      // User is not authenticated, redirect to login page
+      window.location.href = 'login.html';
+    }
+  });
+</script>
+  <script src="main.js"></script>
 </body>
 </html>
