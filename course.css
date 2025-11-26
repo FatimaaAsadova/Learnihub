@@ -1,172 +1,55 @@
-<!Doctype html>
-<html lang="az">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Kurslar</title>
-  <link rel="stylesheet" href="course.css">
-</head>
+/* Modernized course styles */
+:root{
+  --bg: #f6fbff;
+  --surface: #ffffff;
+  --muted: #6b7280;
+  --primary: #2f6d89;
+  --primary-600: #265769;
+  --accent: #63c5da;
+  --radius: 12px;
+  --shadow-1: 0 6px 18px rgba(19,38,55,0.06);
+  --shadow-2: 0 10px 30px rgba(19,38,55,0.08);
+  --max-width: 1100px;
+}
 
-<body data-require-auth="true">
+/* Reset */
+*{ box-sizing:border-box; margin:0; padding:0; }
+html,body{ height:100%; }
+body{ font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial; color:#0f1724; background: radial-gradient(900px 300px at 10% 10%, rgba(99,179,255,0.04), transparent), var(--bg); -webkit-font-smoothing:antialiased; }
+.container{ max-width:var(--max-width); margin:0 auto; padding:28px 20px; }
 
-  <!-- HEADER -->
-  <header class="site-header">
-    <div class="container header-inner">
-      <h1 class="logo"><a href="index.html">Learnihub</a></h1>
+/* Header (glassy) */
+.site-header{ position:sticky; top:0; z-index:1000; backdrop-filter: blur(6px); background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.45)); border-bottom:1px solid rgba(15,23,36,0.06); box-shadow:var(--shadow-1); }
+.header-inner{ display:flex; align-items:center; justify-content:space-between; gap:12px; width:92%; margin:0 auto; padding:10px 0; flex-wrap:wrap; }
+.logo a{ color:var(--primary); text-decoration:none; font-weight:800; font-size:1.15rem; }
+.main-nav{ display:flex; gap:8px; align-items:center; }
+.main-nav a{ color:var(--muted); text-decoration:none; padding:8px 10px; border-radius:999px; transition:all 180ms cubic-bezier(.2,.9,.2,1); }
+.main-nav a:hover{ background: rgba(99,179,255,0.06); color:var(--primary-600); transform: translateY(-2px); }
 
-      <nav class="main-nav">
-        <a href="index.html" class="nav-link">Ana səhifə</a>
-        <a href="course.html" class="nav-link">Kurslar</a>
-        <a href="survey.html" id="surveyBtn" class="nav-link">Sorğu</a>
+/* Filter/search bar */
+.filter-bar{ display:flex; gap:16px; margin:22px 0; align-items:center; }
+.filter-bar input, .filter-bar select{ flex:1; padding:12px 14px; border-radius:10px; border:1px solid rgba(15,23,36,0.06); background:linear-gradient(180deg,#fff,#fbfdff); outline:none; transition:box-shadow .15s, border-color .15s; }
+.filter-bar input:focus, .filter-bar select:focus{ border-color:var(--accent); box-shadow:0 8px 24px rgba(99,179,215,0.08); }
 
-        <!-- LOGIN BUTTON -->
-        <a href="login.html" id="authBtn" class="nav-link">Daxil ol</a>
+/* Courses grid */
+.courses-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:22px; }
+.course-card{ background:linear-gradient(180deg,var(--surface),#fbfdff); border-radius:var(--radius); padding:18px; min-height:340px; display:flex; flex-direction:column; gap:10px; align-items:flex-start; box-shadow:var(--shadow-1); border:1px solid rgba(15,23,36,0.03); transition:transform .22s cubic-bezier(.2,.9,.2,1), box-shadow .22s; }
+.course-card:hover{ transform:translateY(-8px); box-shadow:var(--shadow-2); }
+.course-card .meta{ display:flex; gap:8px; align-items:center; color:var(--muted); font-size:0.9rem; }
+.course-card h3{ margin:6px 0; color:var(--primary-600); font-size:1.05rem; }
+.course-card p{ color:var(--muted); font-size:0.95rem; flex:1; }
+.course-card .card-footer{ width:100%; display:flex; gap:10px; align-items:center; justify-content:space-between; margin-top:12px; }
+.course-card .btn{ padding:10px 12px; border-radius:10px; border:0; cursor:pointer; font-weight:700; }
+.course-card .btn.primary{ background:linear-gradient(90deg,var(--primary),var(--primary-600)); color:#fff; box-shadow:0 8px 26px rgba(47,109,137,0.12); }
+.course-card .btn.ghost{ background:transparent; color:var(--primary); border:1px solid rgba(47,109,137,0.08); }
 
-        <!-- USER MENU -->
-        <div id="userMenu" class="user-menu" style="display:none">
-          <button class="icon-btn">👤</button>
-          <div class="dropdown-menu">
-            <a href="#">Profil</a>
-            <a href="survey.html">Sorğu göndər</a>
-            <a href="#" id="logoutBtn">Çıxış</a>
-          </div>
-        </div>
-      </nav>
-    </div>
-  </header>
+/* Footer */
+.site-footer{ text-align:center; padding:22px; color:var(--muted); border-top:1px solid rgba(15,23,36,0.04); margin-top:48px; }
 
+/* Utilities */
+.muted{ color:var(--muted); }
 
-  <main class="container">
-    <h2>Kurslar</h2>
+/* Responsive */
+@media (max-width:720px){ .filter-bar{ flex-direction:column; } .header-inner{ width:94%; } .container{ padding:18px; } }
 
-    <!-- Axtarış və kateqoriya -->
-    <div class="filter-bar">
-      <input type="text" id="searchInput" placeholder="Kurs adı ilə axtar...">
-      <select id="categorySelect">
-        <option value="hamisi">Bütün kateqoriyalar</option>
-        <option value="programlasdirma">Proqramlaşdırma</option>
-        <option value="data">Data & Analitika</option>
-        <option value="stem">STEM</option>
-        <option value="summer">Summer School</option>
-      </select>
-    </div>
-
-    <div class="courses-grid" id="coursesGrid">
-
-      <article class="course-card" data-category="programlasdirma">
-        <h3>Frontend Proqramlaşdırma</h3>
-        <p>HTML, CSS, JavaScript — layihə əsaslı tədris.</p>
-        <a class="btn small courseBtn" href="#">Qeydiyyat</a>
-      </article>
-
-      <article class="course-card" data-category="data">
-        <h3>Python və Data</h3>
-        <p>Python ilə data analizi və modelləşdirmə.</p>
-        <a class="btn small courseBtn" href="#">Qeydiyyat</a>
-      </article>
-
-      <article class="course-card" data-category="programlasdirma">
-        <h3>SQL və Verilənlər Bazası</h3>
-        <p>PostgreSQL və məlumat bazası strukturları.</p>
-        <a class="btn small courseBtn" href="#">Qeydiyyat</a>
-      </article>
-
-      <article class="course-card" data-category="stem">
-        <h3>STEM Layihələri</h3>
-        <p>Elm və mühəndislik təcrübələri.</p>
-        <a class="btn small courseBtn" href="#">Qeydiyyat</a>
-      </article>
-
-      <article class="course-card" data-category="summer">
-        <h3>Summer School 2025</h3>
-        <p>Yay məktəbi — beynəlxalq seminarlar.</p>
-        <a class="btn small courseBtn" href="#">Qeydiyyat</a>
-      </article>
-
-    </div>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container">
-      <p>© 2025 TəhsilPortal</p>
-    </div>
-  </footer>
-  <script type="module" src="main.js"></script>
-
-  <!-- AXTARIŞ + FİLTR -->
-  <script>
-    const searchInput = document.getElementById("searchInput");
-    const categorySelect = document.getElementById("categorySelect");
-    const courses = document.querySelectorAll(".course-card");
-
-    function filterCourses() {
-      const text = searchInput.value.toLowerCase();
-      const cat = categorySelect.value;
-
-      courses.forEach(card => {
-        const title = card.querySelector("h3").textContent.toLowerCase();
-        const category = card.dataset.category;
-
-        const okText = title.includes(text);
-        const okCat = (cat === "hamisi" || category === cat);
-
-        card.style.display = (okText && okCat) ? "block" : "none";
-      });
-    }
-
-    searchInput.addEventListener("input", filterCourses);
-    categorySelect.addEventListener("change", filterCourses);
-  </script>
-<script type="module" src="main.js"></script>
-<script type="module">
-  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
-
-  const auth = getAuth();
-
-  onAuthStateChanged(auth, (user) => {
-    if (!user) {
-      // User is not authenticated, redirect to login page
-      window.location.href = 'login.html';
-    }
-  });
-</script>
-<script>
-  const courseButtons = document.querySelectorAll('.courseBtn');
-
-  courseButtons.forEach((button, index) => {
-      button.addEventListener('click', () => {
-          // Redirect to the course registration page
-          window.location.href = `registration.html?course=${index + 1}`; // Assuming course pages are named registration.html?course=1, registration.html?course=2, etc.
-      });
-  });
-</script>
-<script>
-    // Check if the user is logged in
-    function isLoggedIn() {
-        return localStorage.getItem('loggedIn') === 'true';
-    }
-
-    // Redirect to login if not logged in
-    function redirectToLogin(targetPage) {
-        if (!isLoggedIn()) {
-            // Store the target page in local storage to redirect after login
-            localStorage.setItem('targetPage', targetPage);
-            window.location.href = 'login.html';
-        } else {
-            // If already logged in, redirect to the target page
-            window.location.href = targetPage;
-        }
-    }
-
-    // Add event listeners to buttons
-    document.getElementById('courseButton').addEventListener('click', function() {
-        redirectToLogin('course.html');
-    });
-
-    document.getElementById('surveyButton').addEventListener('click', function() {
-        redirectToLogin('survey.html');
-    });
-</script>
-  <script src="main.js"></script>
-</body>
-</html>
+@media (prefers-reduced-motion: reduce){ *{ transition:none !important; } }
