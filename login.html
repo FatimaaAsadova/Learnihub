@@ -1,152 +1,258 @@
 <!doctype html>
 <html lang="az">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Daxil ol / Qeydiyyat — Learnihub</title>
-  <link rel="stylesheet" href="login.css">
-
-  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daxil ol / Qeydiyyat — Learnihub</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary-blue': '#1e40af',
+                        'primary-dark': '#111827',
+                        'secondary-light': '#f3f4f6',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom styles for the message box to ensure it stands out */
+        #message-box {
+            transition: all 0.3s ease-in-out;
+        }
+    </style>
 </head>
 
-<body>
+<body class="bg-secondary-light min-h-screen flex flex-col items-center justify-center font-sans p-4">
 
-  <a href="index.html" class="back-button">
-    <ion-icon name="arrow-back-outline"></ion-icon> Geri Qayıt
-  </a>
+    <!-- Back Button -->
+    <a href="index.html" class="absolute top-4 left-4 text-primary-blue hover:text-blue-700 transition duration-150 flex items-center space-x-1">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+        </svg>
+        <span>Geri Qayıt</span>
+    </a>
 
-  <div class="container">
+    <!-- Container for Forms -->
+    <div class="w-full max-w-md bg-white p-8 rounded-xl shadow-2xl border border-gray-100">
 
-    <div id="login-form">
-      <h1>Login</h1>
-      <form id="loginForm">
-        <input type="email" id="loginEmail" name="email" placeholder="Email" required>
-        <input type="password" id="loginPassword" name="password" placeholder="Şifrə" required>
-        <button type="submit">Daxil ol</button>
-      </form>
-      <p>Hesabınız yoxdur? <a href="#" id="show-register">Qeydiyyat</a></p>
+        <!-- Error/Success Message Box -->
+        <div id="message-box" class="hidden p-3 mb-4 text-sm font-medium rounded-lg" role="alert"></div>
+
+        <!-- Login Form -->
+        <div id="login-form">
+            <h1 class="text-3xl font-bold text-center mb-6 text-primary-dark">Daxil ol</h1>
+            <form id="loginForm" class="space-y-4">
+                <input type="email" id="loginEmail" name="email" placeholder="Email" required
+                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-primary-blue focus:border-primary-blue transition duration-150">
+                <input type="password" id="loginPassword" name="password" placeholder="Şifrə" required
+                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-primary-blue focus:border-primary-blue transition duration-150">
+                <button type="submit" class="w-full bg-primary-blue text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-150 shadow-md">
+                    Daxil ol
+                </button>
+            </form>
+            <p class="mt-6 text-center text-sm text-gray-600">
+                Hesabınız yoxdur? <a href="#" id="show-register" class="text-primary-blue hover:underline font-medium">Qeydiyyat</a>
+            </p>
+        </div>
+
+        <!-- Register Form -->
+        <div id="register-form" style="display:none;">
+            <h1 class="text-3xl font-bold text-center mb-6 text-primary-dark">Qeydiyyat</h1>
+            <form id="registerForm" class="space-y-4">
+                <input type="text" id="regUsername" name="username" placeholder="Username" required
+                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-primary-blue focus:border-primary-blue transition duration-150">
+                <input type="email" id="regEmail" name="email" placeholder="Email" required
+                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-primary-blue focus:border-primary-blue transition duration-150">
+                <input type="password" id="regPassword" name="password" placeholder="Şifrə (Ən az 6 simvol)" required
+                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-primary-blue focus:border-primary-blue transition duration-150">
+                <button type="submit" class="w-full bg-primary-blue text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-150 shadow-md">
+                    Qeydiyyatdan keç
+                </button>
+            </form>
+            <p class="mt-6 text-center text-sm text-gray-600">
+                Artıq hesabınız var? <a href="#" id="show-login" class="text-primary-blue hover:underline font-medium">Daxil ol</a>
+            </p>
+        </div>
     </div>
 
-    <div id="register-form" style="display:none;">
-      <h1>Qeydiyyat</h1>
-      <form id="registerForm">
-        <input type="text" id="regUsername" name="username" placeholder="Username" required>
-        <input type="email" id="regEmail" name="email" placeholder="Email" required>
-        <input type="password" id="regPassword" name="password" placeholder="Şifrə" required>
-        <button type="submit">Qeydiyyatdan keç</button>
-      </form>
-      <p>Artıq hesabınız var? <a href="#" id="show-login">Login</a></p>
-    </div>
+    <!-- Firebase and Application Logic -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { 
+            getAuth, 
+            createUserWithEmailAndPassword, 
+            signInWithEmailAndPassword,
+            signInWithCustomToken,
+            signInAnonymously
+        } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-  </div>
+        // Set log level to debug for better console feedback
+        setLogLevel('Debug');
 
-  <script>
-    const loginBox = document.getElementById("login-form");
-    const registerBox = document.getElementById("register-form");
-    document.getElementById("show-register").addEventListener("click", e => {
-      e.preventDefault();
-      loginBox.style.display = "none";
-      registerBox.style.display = "block";
-    });
-    document.getElementById("show-login").addEventListener("click", e => {
-      e.preventDefault();
-      registerBox.style.display = "none";
-      loginBox.style.display = "block";
-    });
-  </script>
+        // --- Firebase Configuration & Initialization ---
+        // Access global variables provided by the Canvas environment
+        const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
 
-<script>
-  const loginBox = document.getElementById("login-form");
-  const registerBox = document.getElementById("register-form");
-  document.getElementById("show-register").addEventListener("click", e => {
-    e.preventDefault();
-    loginBox.style.display = "none";
-    registerBox.style.display = "block";
-  });
-  document.getElementById("show-login").addEventListener("click", e => {
-    e.preventDefault();
-    registerBox.style.display = "none";
-    loginBox.style.display = "block";
-  });
-</script>
+        if (Object.keys(firebaseConfig).length === 0) {
+            console.error("Firebase configuration is missing.");
+            showStatusMessage("Xəta: Firebase konfiqurasiyası tapılmadı.", 'error');
+            // Prevent further execution if config is missing
+            document.getElementById('loginForm').style.pointerEvents = 'none';
+            document.getElementById('registerForm').style.pointerEvents = 'none';
+        }
 
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
-  import { 
-    getAuth, 
-    createUserWithEmailAndPassword, 
-    signInWithEmailAndPassword, 
-    setPersistence, 
-    browserLocalPersistence 
-  } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
 
-  // Firebase Konfiqurasiyası
-  const firebaseConfig = {
-    apiKey: "AIzaSyBAIn3a96pvltpQqvobdKKWfRqSOp2x_MA",
-    authDomain: "learnihub-d14c4.firebaseapp.com",
-    projectId: "learnihub-d14c4",
-    storageBucket: "learnihub-d14c4.firebasestorage.app",
-    messagingSenderId: "339528131716",
-    appId: "1:339528131716:web:8c8c137f108a533e254ed1",
-    measurementId: "G-HD76FE1BFY"
-  };
+        // Initial sign-in with custom token or anonymously
+        async function initializeAuth() {
+            try {
+                if (initialAuthToken) {
+                    await signInWithCustomToken(auth, initialAuthToken);
+                    console.log("Signed in with custom token.");
+                } else {
+                    await signInAnonymously(auth);
+                    console.log("Signed in anonymously.");
+                }
+            } catch (error) {
+                console.error("Firebase Auth Initialization Error:", error);
+                showStatusMessage(`Auth Xətası: ${error.message}`, 'error');
+            }
+        }
+        
+        initializeAuth();
 
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  
-  // DOM Elementləri
-  const loginBox = document.getElementById("login-form");
-  const registerBox = document.getElementById("register-form");
-  
-  // Toggle Funksiyası
-  document.getElementById("show-register").addEventListener("click", e => {
-    e.preventDefault();
-    loginBox.style.display = "none";
-    registerBox.style.display = "block";
-  });
-  document.getElementById("show-login").addEventListener("click", e => {
-    e.preventDefault();
-    registerBox.style.display = "none";
-    loginBox.style.display = "block";
-  });
+        // --- Utility Function for Status Messages (Replaces alert()) ---
+        const messageBox = document.getElementById("message-box");
 
-  // REGISTER
-  document.getElementById("registerForm").addEventListener("submit", e => {
-    e.preventDefault();
-    const email = document.getElementById("regEmail").value;
-    const password = document.getElementById("regPassword").value;
+        function showStatusMessage(message, type = 'info') {
+            messageBox.textContent = message;
+            messageBox.classList.remove('hidden', 'bg-red-100', 'text-red-800', 'bg-green-100', 'text-green-800', 'bg-blue-100', 'text-blue-800');
 
-    createUserWithEmailAndPassword(auth, email, password)
-      .then(() => {
-        document.getElementById("registerForm").reset();
-        loginBox.style.display = "block";
-        registerBox.style.display = "none";
-        alert("Qeydiyyat uğurla tamamlandı! İndi daxil ola bilərsiniz.");
-      })
-      .catch(err => {
-        if(err.code==="auth/email-already-in-use") alert("Bu email artıq mövcuddur!");
-        else alert(err.message);
-      });
-  });
+            if (type === 'error') {
+                messageBox.classList.add('bg-red-100', 'text-red-800');
+            } else if (type === 'success') {
+                messageBox.classList.add('bg-green-100', 'text-green-800');
+            } else { // info/default
+                messageBox.classList.add('bg-blue-100', 'text-blue-800');
+            }
 
-  // LOGIN
-  document.getElementById("loginForm").addEventListener("submit", e => {
-    e.preventDefault();
-    const email = document.getElementById("loginEmail").value;
-    const password = document.getElementById("loginPassword").value;
+            messageBox.classList.remove('hidden');
 
-    setPersistence(auth, browserLocalPersistence)
-      .then(() => signInWithEmailAndPassword(auth, email, password))
-      .then(() => {
-        // Uğurlu Logindən sonra ana səhifəyə yönləndirmə
-        window.location.href = "index.html"; 
-      })
-      .catch(err => alert(err.message));
-  });
-</script>
-<script type="module" src="main.js"></script>
-</body>
-</html>
+            // Hide after 5 seconds
+            setTimeout(() => {
+                messageBox.classList.add('hidden');
+            }, 5000);
+        }
+
+        // --- Form Toggling Logic ---
+        const loginBox = document.getElementById("login-form");
+        const registerBox = document.getElementById("register-form");
+
+        document.getElementById("show-register").addEventListener("click", e => {
+            e.preventDefault();
+            messageBox.classList.add('hidden'); // Clear messages on toggle
+            loginBox.style.display = "none";
+            registerBox.style.display = "block";
+        });
+
+        document.getElementById("show-login").addEventListener("click", e => {
+            e.preventDefault();
+            messageBox.classList.add('hidden'); // Clear messages on toggle
+            registerBox.style.display = "none";
+            loginBox.style.display = "block";
+        });
+
+        // --- REGISTER Logic ---
+        document.getElementById("registerForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const email = document.getElementById("regEmail").value;
+            const password = document.getElementById("regPassword").value;
+
+            try {
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                console.log("Registration successful for user:", userCredential.user.uid);
+                showStatusMessage("Qeydiyyat uğurludur! Yönləndirilir...", 'success');
+                
+                // Redirect logic
+                const params = new URLSearchParams(window.location.search);
+                const next = params.get('next');
+                window.location.href = next ? decodeURIComponent(next) : 'index.html';
+
+            } catch (err) {
+                console.error("Registration Error:", err);
+                let errorMessage = "Qeydiyyat alınmadı.";
+                if (err.code === "auth/email-already-in-use") {
+                    errorMessage = "Bu email artıq istifadədədir!";
+                } else if (err.code === "auth/weak-password") {
+                    errorMessage = "Şifrə ən az 6 simvol olmalıdır.";
+                } else if (err.code === "auth/operation-not-allowed") {
+                    // Hata çözümü: Kullanıcıya ne yapması gerektiğini açıkça belirtiyoruz.
+                    errorMessage = "Firebase: Bu əməliyyat (Email/Şifrə ilə Qeydiyyat) Firebase konsolunda aktivləşdirilməyib. Zəhmət olmasa, Firebase -> Authentication -> Sign-in Method bölməsində Email/Password seçimi aktiv edin.";
+                } else if (err.message) {
+                    errorMessage = err.message;
+                }
+                showStatusMessage(`Xəta: ${errorMessage}`, 'error');
+            }
+        });
+
+        // --- LOGIN Logic ---
+        document.getElementById("loginForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const email = document.getElementById("loginEmail").value;
+            const password = document.getElementById("loginPassword").value;
+
+            try {
+                // Set persistence is typically handled by the environment or default behavior in v11.
+                // We proceed directly to sign in.
+                const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                console.log("Login successful for user:", userCredential.user.uid);
+                showStatusMessage("Giriş uğurludur! Yönləndirilir...", 'success');
+
+                // Redirect logic
+                const params = new URLSearchParams(window.location.search);
+                const next = params.get('next');
+                window.location.href = next ? decodeURIComponent(next) : 'index.html';
+
+                // After successful login
+localStorage.setItem('loggedIn', 'true');
+
+// Redirect to the target page if it exists
+const targetPage = localStorage.getItem('targetPage');
+if (targetPage) {
+    localStorage.removeItem('targetPage'); // Clear the target page
+    window.location.href = targetPage; // Redirect to the target page
+} else {
+    window.location.href = 'index.html'; // Default redirect
+}
+
+            } catch (err) {
+                console.error("Login Error:", err);
+                let errorMessage = "Giriş alınmadı.";
+                if (err.code === "auth/wrong-password" || err.code === "auth/user-not-found") {
+                     errorMessage = "Email və ya şifrə yanlışdır.";
+                } else if (err.code === "auth/operation-not-allowed") {
+                    // Hata çözümü: Kullanıcıya ne yapması gerektiğini açıkça belirtiyoruz.
+                    errorMessage = "Firebase: Bu əməliyyat (Email/Şifrə ilə Giriş) Firebase konsolunda aktivləşdirilməyib. Zəhmət olmasa, Firebase -> Authentication -> Sign-in Method bölməsində Email/Password seçimi aktiv edin.";
+                } else if (err.message) {
+                    errorMessage = err.message;
+                }
+                showStatusMessage(`Xəta: ${errorMessage}`, 'error');
+            }
+        });
+
+    </script>
+    <script src="main.js"></script>
 </body>
 </html>
