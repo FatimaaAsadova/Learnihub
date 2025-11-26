@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="course.css">
 </head>
 
-<body>
+<body data-require-auth="true">
 
   <!-- HEADER -->
   <header class="site-header">
@@ -118,5 +118,55 @@
     categorySelect.addEventListener("change", filterCourses);
   </script>
 <script type="module" src="main.js"></script>
+<script type="module">
+  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+
+  const auth = getAuth();
+
+  onAuthStateChanged(auth, (user) => {
+    if (!user) {
+      // User is not authenticated, redirect to login page
+      window.location.href = 'login.html';
+    }
+  });
+</script>
+<script>
+  const courseButtons = document.querySelectorAll('.courseBtn');
+
+  courseButtons.forEach((button, index) => {
+      button.addEventListener('click', () => {
+          // Redirect to the course registration page
+          window.location.href = `registration.html?course=${index + 1}`; // Assuming course pages are named registration.html?course=1, registration.html?course=2, etc.
+      });
+  });
+</script>
+<script>
+    // Check if the user is logged in
+    function isLoggedIn() {
+        return localStorage.getItem('loggedIn') === 'true';
+    }
+
+    // Redirect to login if not logged in
+    function redirectToLogin(targetPage) {
+        if (!isLoggedIn()) {
+            // Store the target page in local storage to redirect after login
+            localStorage.setItem('targetPage', targetPage);
+            window.location.href = 'login.html';
+        } else {
+            // If already logged in, redirect to the target page
+            window.location.href = targetPage;
+        }
+    }
+
+    // Add event listeners to buttons
+    document.getElementById('courseButton').addEventListener('click', function() {
+        redirectToLogin('course.html');
+    });
+
+    document.getElementById('surveyButton').addEventListener('click', function() {
+        redirectToLogin('survey.html');
+    });
+</script>
+  <script src="main.js"></script>
 </body>
 </html>
